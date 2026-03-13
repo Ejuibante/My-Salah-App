@@ -13,26 +13,25 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Set up Node.js
+    - name: Set up Node.js (Node 22)
       uses: actions/setup-node@v3
       with:
-        node-version: '18'
+        node-version: '22'
+
+    - name: Upgrade npm
+      run: npm install -g npm@latest
 
     - name: Install dependencies
-      run: |
-        npm install
+      run: npm install
 
     - name: Build web assets
-      run: |
-        npm run build
+      run: npm run build
 
     - name: Install Capacitor CLI
-      run: |
-        npm install -g @capacitor/cli
+      run: npm install -g @capacitor/cli
 
     - name: Sync Capacitor
-      run: |
-        npx cap sync android
+      run: npx cap sync android
 
     - name: Set up JDK
       uses: actions/setup-java@v3
